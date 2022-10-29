@@ -1,13 +1,13 @@
 package com.interviewprep.moshi_androidlion48.repository.models
 
-// FIXME: Create Response objects to handle data returned from api.
-// Consider using JSON to POJO plugin or website convertor.
+import com.squareup.moshi.Json
+
 data class Question(
-    val id: Int = 0,
-    val question: String = "",
-    val details: String = "",
-    val questionType: String = "",
-    val trueOrFalse: Boolean = true,
-    val shortAns: String = "",
-    val tag: String = ""
+    @field:Json(name = "details") var details: String,
+    @field:Json(name = "id") var id: Int,
+    @field:Json(name = "question") var question: String,
+    @field:Json(name = "questionType") var questionType: String,
+    @field:Json(name = "shortAns") var shortAns: String,
+    @field:Json(name = "tag") var tag: String,
+    @field:Json(name = "trueOrFalse") var trueOrFalse: Boolean
 )

@@ -1,9 +1,13 @@
 package com.interviewprep.moshi_androidlion48.repository.models.response
 
+import android.os.Parcelable
 import com.interviewprep.moshi_androidlion48.repository.models.Answer
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
-// FIXME: Create Response objects to handle data returned from api.
-// add parameters to the objects reflecting their key values.
+@JsonClass(generateAdapter = true)
+@Parcelize
 data class AnswersResponse(
-    var answers: List<Answer>
-)
+    @Json(name = "answers") var answers: List<Answer>? = null
+) : Parcelable
