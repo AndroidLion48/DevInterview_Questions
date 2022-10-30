@@ -1,8 +1,6 @@
 package com.interviewprep.moshi_androidlion48.repository.models.response
 
 import com.interviewprep.moshi_androidlion48.repository.models.Question
+import com.squareup.moshi.Json
 
-// FIXME: Create Response objects to handle data returned from api.
-class QuestionsResponse(
-    val questions: List<Question>
-)
+class QuestionsResponse(@field:Json(name = "questions") val questions: List<Question>)

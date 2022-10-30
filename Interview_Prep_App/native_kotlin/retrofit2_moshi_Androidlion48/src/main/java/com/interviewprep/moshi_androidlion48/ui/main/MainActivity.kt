@@ -18,7 +18,7 @@ import com.interviewprep.moshi_androidlion48.ui.score.ScoreActivity
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
+import java.util.Random
 
 // fixme: (Optional) Use Databinding, Dependency Injection, or ViewBinding to refactor this fragment.
 class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
 
     companion object {
         // Static Variables
-        private const val QUIZ_SIZE = 5
+        private const val QUIZ_SIZE = 10
     }
 
     private val tc2rGithubRepository: Tc2rGithubRepository by lazy {
@@ -72,8 +72,8 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
         }
 
         lifecycleScope.launch(coroutineExceptionHandler) {
-            answersList = ArrayList(tc2rGithubRepository.getAndroidAnswers().body()?.answers ?: emptyList())
-            quizList = ArrayList(tc2rGithubRepository.getAndroidQuestions().body()?.questions ?: emptyList())
+            answersList = tc2rGithubRepository.getAndroidAnswers()?.body()?.answers as ArrayList<Answer>?
+            quizList = tc2rGithubRepository.getAndroidQuestions().body()?.questions as ArrayList<Question>?
 
             launch(Dispatchers.Main) {
                 createQuiz()
@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
         // sets the score system for quiz.
         // TODO: 5/31/2017 maybe remove this and simply divide correct answers by total questions
         pointPerQ = 1.0 / QUIZ_SIZE
-        while (i < QUIZ_SIZE) {
+        while (i < QUIZ_SIZE && quizList!![randNum].questionType == "multi") {
             // Log.wtf("testList Size: ", String.valueOf(testList.size()) + " Vs "+ String.valueOf(quizSize) );
             // if boolean at randNum in selectedQuestion is false
             if (!selectedQuestion[randNum]) {

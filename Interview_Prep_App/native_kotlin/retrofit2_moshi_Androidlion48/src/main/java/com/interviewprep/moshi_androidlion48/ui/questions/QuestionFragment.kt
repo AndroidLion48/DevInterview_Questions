@@ -18,7 +18,7 @@ import com.interviewprep.moshi_androidlion48.repository.models.MultipleChoiceQue
 import com.interviewprep.moshi_androidlion48.repository.models.Question
 import com.interviewprep.moshi_androidlion48.ui.main.MainActivity
 import com.tc2r.sharedresources.R.drawable
-import java.util.*
+import java.util.Random
 
 // TODO: Use the finished answer and question objects to populate this fragment.
 // fixme: (Optional) Use Databinding, Dependency Injection, or ViewBinding to refactor this fragment.
@@ -43,12 +43,12 @@ class QuestionFragment : Fragment(), View.OnClickListener {
             val fragment = QuestionFragment()
             // Add arguments to bundle of new instance.
             // FIXME: UnComment this code
-               val args = Bundle()
-            // args.putString(QUESTION, question.question)
-            // args.putString(KEY, question.shortAns)
-            // args.putString(DETAILS, question.details)
-            // args.putParcelableArrayList(FILLANSWERS, fillAnswers)
-               fragment.arguments = args
+            val args = Bundle()
+            args.putString(QUESTION, question.question)
+            args.putString(KEY, question.shortAns)
+            args.putString(DETAILS, question.details)
+            args.putParcelableArrayList(FILLANSWERS, fillAnswers)
+            fragment.arguments = args
             return fragment
         }
     }
@@ -84,8 +84,8 @@ class QuestionFragment : Fragment(), View.OnClickListener {
         // Get Arguments from bundle
         arguments?.let {
             quizQuestion = it.getString(QUESTION, "What is a cat")
-            quizAnswer = it.getString(KEY,"it is a meow")
-            quizDetails = it.getString(DETAILS,"It is a feline that goes Meow")
+            quizAnswer = it.getString(KEY, "it is a meow")
+            quizDetails = it.getString(DETAILS, "It is a feline that goes Meow")
             otherAnswers = it.getParcelableArrayList(FILLANSWERS) ?: arrayListOf(Answer(), Answer(), Answer())
         }
     }

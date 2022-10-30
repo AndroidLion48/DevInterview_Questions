@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
         while (i < QUIZ_SIZE) {
             // Log.wtf("testList Size: ", String.valueOf(testList.size()) + " Vs "+ String.valueOf(quizSize) );
             // if boolean at randNum in selectedQuestion is false
-            if (!selectedQuestion[randNum]) {
+            if (!selectedQuestion[randNum] && quizList!![randNum].questionType == "multi") {
                 // Add position randNum to test list;
                 testList!!.add(quizList!![randNum])
                 // set this question selected to true.
